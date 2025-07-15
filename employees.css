@@ -1,0 +1,602 @@
+/* ===== 1. Design System & Global Styles ===== */
+
+:root {
+    /* Color Scheme */
+    --primary-color: #0057A3;
+    --secondary-color: #F5F7FA;
+    --accent-color: #3EAF7C;
+    --text-main: #1A1A1A;
+    --text-muted: #666666;
+    --danger-color: #C0392B;
+    --border-lines: #DADDE1;
+    --sidebar-bg: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    /* Typography */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Base Reset & Globals */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* Base for rem units */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    font-weight: 400; /* Regular */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #00417a; /* Darker primary */
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ===== 2. Font Sizes and Responsive Typography ===== */
+
+/* Mobile (<768px) - Default */
+h1 { font-size: 1.75rem; font-weight: 600; }
+h2 { font-size: 1.25rem; font-weight: 500; }
+h3 { font-size: 1.125rem; font-weight: 500; }
+body { font-size: 0.9375rem; }
+.label, .note, .widget-status { font-size: 0.8125rem; }
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    body { font-size: 1rem; }
+    .label, .note, .widget-status { font-size: 0.875rem; }
+}
+
+/* Desktop (>=1024px) */
+@media (min-width: 1024px) {
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    body { font-size: 1rem; }
+    .label, .note, .widget-status { font-size: 0.875rem; }
+}
+
+
+/* ===== 3. Layout (CSS Grid) ===== */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-lines);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.content-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+/* Layout Grids within Content */
+.summary-widgets {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-bottom: 1.5rem;
+}
+
+.charts-section { /* From Admin Page */
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-bottom: 1.5rem;
+}
+
+.activity-section { /* From Admin Page */
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+.employee-main-grid { /* For Employee Page */
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+    .activity-section, .employee-main-grid {
+        grid-template-columns: 2fr 1fr; /* 2/3 and 1/3 layout on desktop */
+    }
+}
+
+
+/* ===== 4. Component Styles ===== */
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-lines);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-lines);
+}
+
+.sidebar-header h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 1rem 0;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-main);
+}
+.sidebar-nav a.active {
+    color: var(--primary-color);
+    background-color: #e6f0f8;
+    border-left-color: var(--primary-color);
+}
+.sidebar-nav svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+.nav-category {
+    padding: 1.5rem 1.5rem 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Cards */
+.card, .widget-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-lines);
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+}
+.widget-card h3 {
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+.widget-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+.widget-card {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+.widget-card .widget-value.highlight {
+    color: var(--primary-color);
+}
+.widget-card .widget-status {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+.widget-status.success { color: var(--accent-color); }
+.widget-status.danger, .widget-value.danger { color: var(--danger-color); }
+.widget-status.muted { color: var(--text-muted); }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    font-size: 0.9375rem; /* Match body text */
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #00417a;
+    color: white;
+}
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-main);
+    border-color: var(--border-lines);
+}
+.btn-secondary:hover {
+    background-color: #e9ecf0;
+}
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8125rem;
+}
+.quick-actions .btn {
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+.quick-actions .btn:last-child {
+    margin-bottom: 0;
+}
+.btn-link {
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Activity & Notification Lists */
+.activity-log, .notification-list { list-style: none; }
+.activity-log li { padding: 0.75rem 0; border-bottom: 1px solid var(--border-lines); color: var(--text-muted); }
+.activity-log li:last-child { border-bottom: none; }
+.activity-log li span { float: right; font-size: 0.8125rem; }
+.notification-list li { padding: 0.75rem; border-radius: 4px; margin-bottom: 0.5rem; }
+.alert-danger { background-color: #fceceb; border-left: 3px solid var(--danger-color); color: #a33125; }
+.alert-warning { background-color: #fef6e7; border-left: 3px solid #f39c12; color: #c27c0e; }
+
+/* Chart Placeholders */
+.chart-placeholder { height: 250px; display: flex; align-items: center; justify-content: center; background-color: var(--secondary-color); border: 1px dashed var(--border-lines); border-radius: 4px; margin-top: 1rem; }
+.chart-placeholder .chart-label { color: var(--text-muted); text-align: center; padding: 1rem; }
+
+/* ===== 5. Mobile Responsiveness ===== */
+
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    margin-right: 1rem;
+    color: var(--text-main);
+}
+
+@media (max-width: 1023px) {
+    .dashboard-container {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 260px;
+        z-index: 1000;
+        transform: translateX(-100%);
+    }
+    .dashboard-container.sidebar-visible .sidebar {
+        transform: translateX(0);
+    }
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* ===== 6. Employee Dashboard Specifics (NEW) ===== */
+
+/* Data Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+.data-table th, .data-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-lines);
+}
+.data-table th {
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+.data-table tbody tr:hover {
+    background-color: var(--secondary-color);
+}
+.status-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.status-badge.status-success {
+    background-color: #eaf6ed;
+    color: var(--accent-color);
+}
+
+/* Donut Chart */
+.donut-chart-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+.donut-chart {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    /* Net Pay (75%) vs Deductions (25%) */
+    background: conic-gradient(
+        var(--danger-color) 0% 25%,
+        var(--accent-color) 25% 100%
+    );
+}
+.donut-center-label {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.donut-center-label span {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+.donut-center-label strong {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    line-height: 1.1;
+}
+
+/* Chart Legend */
+.chart-legend {
+    list-style: none;
+    margin-top: 1rem;
+}
+.chart-legend li {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+.chart-legend .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+
+
+/* ===== 7. Accountant Dashboard Specifics (NEW) ===== */
+
+/* New Grid Layout for Accountant Page */
+.accountant-main-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr; /* Mobile first */
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .accountant-main-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Grouping panels in the grid */
+.accountant-main-grid .main-panel,
+.accountant-main-grid .side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Payroll Activity Timeline */
+.timeline-log {
+    list-style: none;
+    padding-left: 1rem;
+    margin-top: 1rem;
+    border-left: 2px solid var(--border-lines);
+}
+
+.timeline-log li {
+    position: relative;
+    padding: 0.5rem 0 1.5rem 1.5rem;
+    color: var(--text-muted);
+}
+
+.timeline-log li:last-child {
+    padding-bottom: 0.5rem;
+    border-bottom: 0;
+}
+
+.timeline-log li::before {
+    content: '';
+    position: absolute;
+    left: -9px; /* (16px circle width / 2) + 1px border offset */
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 3px solid var(--border-lines);
+    z-index: 1;
+}
+
+.timeline-log li.completed::before {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+}
+.timeline-log li:not(.completed)::before {
+    border-color: var(--text-muted);
+}
+
+.timeline-log li strong {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.timeline-log li span {
+    display: block;
+    font-size: 0.8125rem;
+}
+
+/* Status in table for failed payments */
+.status-badge.status-danger {
+    background-color: #fceceb;
+    color: var(--danger-color);
+}
+
+
+/* ===== 7. Accountant Dashboard Specifics (Existing) ===== */
+
+/* ... (All the styles from the previous steps should be here) ... */
+
+
+/* ===== 8. Landing Page Styles (NEW) ===== */
+
+.landing-page {
+    /* Override dashboard-specific body styles */
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.landing-container {
+    flex-grow: 1; /* Allows the footer to be pushed down */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.landing-content {
+    text-align: center;
+    max-width: 650px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.landing-title {
+    font-size: 3.5rem; /* Larger and bolder for impact */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.landing-tagline {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.landing-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn.btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    min-width: 220px; /* Ensures buttons have a nice width */
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn.btn-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.landing-footer {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+/* A simple fade-in animation for the content */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments for the landing page */
+@media (max-width: 768px) {
+    .landing-title {
+        font-size: 2.75rem;
+    }
+    .landing-tagline {
+        font-size: 1.125rem;
+    }
+    .landing-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .btn.btn-large {
+        width: 100%;
+        max-width: 320px; /* Prevent buttons from becoming too wide */
+    }
+}

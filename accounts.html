@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountant Dashboard - Payroll System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Reusing the same stylesheet -->
+    <link rel="stylesheet" href="employees.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- ===== Accountant Sidebar ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>PayPro</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="active"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg><span>Dashboard</span></a></li>
+                    
+                    
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.58l7-7c.37-.36.59-.86.59-1.41s-.22-1.05-.59-1.42zM13 20.99l-9-9V4h7l9 9-7 7.01z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg><span>Run Payroll</span></a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5 3.5 18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2v14H3v3c0 1.66 1.34 3 3 3h12c1.66 0 3-1.34 3-3v-3h-3V2l-1.5 1.5zM15 20H9v-2h6v2zm-6-5h6v-2H9v2z"/></svg><span>Payroll History</span></a></li>
+                    
+                    
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg><span>Statutories</span></a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg><span>Bank Disbursement</span></a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg><span>Financial Reports</span></a></li>
+                    
+                    
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg><span>Notifications</span></a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg><span>Logout</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="menu-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                </div>
+                <h1>Accountant Dashboard</h1>
+            </header>
+            
+            <div class="content-body">
+                <!-- Financial Summary Cards -->
+                <section class="summary-widgets">
+                    <div class="widget-card">
+                        <h3>Salary</h3>
+                        <p class="widget-value">KSh 1,450,000</p>
+                        <span class="widget-status muted">For June 2025</span>
+                    </div>
+                    <div class="widget-card">
+                        <h3>Net Pay</h3>
+                        <p class="widget-value">KSh 1,230,000</p>
+                        <span class="widget-status success">June 2025</span>
+                    </div>
+                    <div class="widget-card">
+                        <h3>Deductions</h3>
+                        <p class="widget-value">KSh 220,000</p>
+                        <span class="widget-status muted">Statutory & Other June 2025</span>
+                    </div>
+                    
+                </section>
+
+                <!-- Accountant Main Grid -->
+                <section class="accountant-main-grid">
+                    <div class="main-panel">
+
+                        <div class="card">
+                            <h2>Latest Payroll Details</h2>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee ID</th>
+                                        <th>Name</th>
+                                        <th>Net Pay</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>EMP001</td><td>John Doe</td><td>KSh 110,200</td><td><span class="status-badge status-success">Paid</span></td><td><a href="#" class="btn-link">View</a></td></tr>
+                                    <tr><td>EMP004</td><td>Alice Johnson</td><td>KSh 95,000</td><td><span class="status-badge status-success">Paid</span></td><td><a href="#" class="btn-link">View</a></td></tr>
+                                    <tr><td>EMP015</td><td>Robert Brown</td><td>KSh 78,500</td><td><span class="status-badge status-danger">Failed</span></td><td><a href="#" class="btn-link">Retry</a></td></tr>
+                                    <tr><td>EMP023</td><td>Emily White</td><td>KSh 130,000</td><td><span class="status-badge status-success">Paid</span></td><td><a href="#" class="btn-link">View</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="card">
+                            <h3>Quick Actions</h3>
+                            <div class="quick-actions">
+                                <button class="btn btn-primary">Start New Payroll</button>
+                                <button class="btn btn-secondary">Generate Statutory Report</button>
+                                <button class="btn btn-secondary">View Payment File</button>
+                            </div>
+                    </div>
+                    
+                    
+                    </div>
+                </section>
+                
+            </div>
+        </main>
+    </div>
+</body>
+</html>
