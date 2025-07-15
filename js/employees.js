@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
             // --- Sample Data ---
             const allEmployees = [
-                { id: 'EMP001', name: 'Vincent Amonde', department: 'Technology', position: 'Lead Developer', email: 'john.d@example.com', phone: '0712345678', joined: '2021-05-12', status: 'Active', gender: 'Male' },
-                { id: 'EMP002', name: 'Clinton Ndalo', department: 'HR', position: 'HR Manager', email: 'jane.s@example.com', phone: '0723456789', joined: '2020-01-20', status: 'Active', gender: 'Female' },
-                { id: 'EMP003', name: 'Vincent Nyunja', department: 'Finance', position: 'Accountant', email: 'robert.b@example.com', phone: '0734567890', joined: '2022-08-01', status: 'Active', gender: 'Male' },
-                { id: 'EMP004', name: 'Eunice Okelo', department: 'Technology', position: 'UI/UX Designer', email: 'emily.w@example.com', phone: '0745678901', joined: '2021-11-15', status: 'Active', gender: 'Female' },
-                { id: 'EMP005', name: 'Leornard Oyungu', department: 'Marketing', position: 'Marketing Lead', email: 'michael.g@example.com', phone: '0756789012', joined: '2019-03-10', status: 'Active', gender: 'Male' },
-                { id: 'EMP006', name: 'Mercy Adhiambo', department: 'Technology', position: 'Frontend Developer', email: 'sarah.b@example.com', phone: '0767890123', joined: '2023-02-28', status: 'Active', gender: 'Female' },
-                { id: 'EMP007', name: 'Nancy Waititu', department: 'Operations', position: 'Manager', email: 'david.k@example.com', phone: '0778901234', joined: '2018-07-01', status: 'On Leave', gender: 'Male' },
+                { id: 'EMP001', name: 'Vincent Amonde', department: 'Technology', position: 'Lead Developer', email: 'vincent@example.com', phone: '0712345678', joined: '2021-05-12', status: 'Active', gender: 'Male' },
+                { id: 'EMP002', name: 'Clinton Ndalo', department: 'HR', position: 'HR Manager', email: 'clinto@example.com', phone: '0723456789', joined: '2020-01-20', status: 'Active', gender: 'Female' },
+                { id: 'EMP003', name: 'Vincent Nyunja', department: 'Finance', position: 'Accountant', email: 'nyunja@example.com', phone: '0734567890', joined: '2022-08-01', status: 'Active', gender: 'Male' },
+                { id: 'EMP004', name: 'Eunice Okelo', department: 'Technology', position: 'UI/UX Designer', email: 'eunice@example.com', phone: '0745678901', joined: '2021-11-15', status: 'Active', gender: 'Female' },
+                { id: 'EMP005', name: 'Leornard Oyungu', department: 'Marketing', position: 'Marketing Lead', email: 'leornard@example.com', phone: '0756789012', joined: '2019-03-10', status: 'Active', gender: 'Male' },
+                { id: 'EMP006', name: 'Mercy Adhiambo', department: 'Technology', position: 'Frontend Developer', email: 'mercy.a@example.com', phone: '0767890123', joined: '2023-02-28', status: 'Active', gender: 'Female' },
+                { id: 'EMP007', name: 'Nancy Waititu', department: 'Operations', position: 'Manager', email: 'nancy.w@example.com', phone: '0778901234', joined: '2018-07-01', status: 'On Leave', gender: 'Female' },
                 { id: 'EMP008', name: 'Laura Hill', department: 'Finance', position: 'Analyst', email: 'laura.h@example.com', phone: '0789012345', joined: '2023-06-19', status: 'Active', gender: 'Female' },
             ];
 
