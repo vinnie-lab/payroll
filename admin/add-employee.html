@@ -101,7 +101,12 @@
             </div>
         </main>
     </div>
-
+<!-- Add script here to toggle a class on .dashboard-container for mobile menu -->
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.dashboard-container').classList.toggle('sidebar-visible');
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const prevBtn = document.getElementById('prevBtn');
