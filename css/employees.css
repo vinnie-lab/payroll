@@ -758,3 +758,23 @@ body { font-size: 0.9375rem; }
         opacity: 1;
     }
 }
+
+
+/* ===== 10. Pagination Disabled State (NEW) ===== */
+
+.pagination-btn:disabled {
+    background-color: var(--secondary-color);
+    color: #b0b0b0; /* Lighter grey for disabled text */
+    cursor: not-allowed;
+    border-color: var(--border-lines);
+}
+.pagination-btn:disabled:hover {
+    color: #b0b0b0; /* Ensure hover doesn't change color */
+}
+
+.pagination-status {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin: 0 1rem; /* Adds spacing between the buttons and the text */
+}
