@@ -122,3 +122,48 @@ document.addEventListener('DOMContentLoaded', () => {
     displayTable();
     setupPagination();
 });
+
+
+// --- Sidebar Toggle Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+        const dashboardContainer = document.querySelector('.dashboard-container');
+        const sidebar = document.querySelector('.sidebar');
+
+        // Ensure all elements exist before adding listeners
+        if (menuToggle && sidebarCloseBtn && dashboardContainer && sidebar) {
+            
+            // Function to open the sidebar
+            const openSidebar = () => {
+                dashboardContainer.classList.add('sidebar-visible');
+            };
+
+            // Function to close the sidebar
+            const closeSidebar = () => {
+                dashboardContainer.classList.remove('sidebar-visible');
+            };
+
+            // --- Event Listeners ---
+
+            // 1. Click hamburger icon to OPEN
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevents the document click listener from firing
+                openSidebar();
+            });
+
+            // 2. Click 'X' button to CLOSE
+            sidebarCloseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeSidebar();
+            });
+
+            // 3. Click OUTSIDE the sidebar to CLOSE
+            document.addEventListener('click', (e) => {
+                // Check if the sidebar is visible and the click was outside the sidebar itself
+                if (dashboardContainer.classList.contains('sidebar-visible') && !sidebar.contains(e.target)) {
+                    closeSidebar();
+                }
+            });
+        }
+    });

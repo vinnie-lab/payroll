@@ -15,6 +15,10 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>PayPro</h2>
+                <!-- ADD THIS BUTTON -->
+                <button class="sidebar-close-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                </button>
             </div>
             <nav class="sidebar-nav">
                 <ul>
@@ -42,6 +46,8 @@
                 </div>
                 <h1>Admin Dashboard</h1>
             </header>
+
+            
             
             <div class="content-body">
                 <!-- Summary Widgets -->
@@ -118,6 +124,53 @@
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             document.querySelector('.dashboard-container').classList.toggle('sidebar-visible');
         });
+
+    </script>
+    <script>
+        
+// --- Sidebar Toggle Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+        const dashboardContainer = document.querySelector('.dashboard-container');
+        const sidebar = document.querySelector('.sidebar');
+
+        // Ensure all elements exist before adding listeners
+        if (menuToggle && sidebarCloseBtn && dashboardContainer && sidebar) {
+            
+            // Function to open the sidebar
+            const openSidebar = () => {
+                dashboardContainer.classList.add('sidebar-visible');
+            };
+
+            // Function to close the sidebar
+            const closeSidebar = () => {
+                dashboardContainer.classList.remove('sidebar-visible');
+            };
+
+            // --- Event Listeners ---
+
+            // 1. Click hamburger icon to OPEN
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevents the document click listener from firing
+                openSidebar();
+            });
+
+            // 2. Click 'X' button to CLOSE
+            sidebarCloseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeSidebar();
+            });
+
+            // 3. Click OUTSIDE the sidebar to CLOSE
+            document.addEventListener('click', (e) => {
+                // Check if the sidebar is visible and the click was outside the sidebar itself
+                if (dashboardContainer.classList.contains('sidebar-visible') && !sidebar.contains(e.target)) {
+                    closeSidebar();
+                }
+            });
+        }
+    });
     </script>
 </body>
 </html>
