@@ -778,3 +778,181 @@ body { font-size: 0.9375rem; }
     font-size: 0.9rem;
     margin: 0 1rem; /* Adds spacing between the buttons and the text */
 }
+
+
+
+/* ===== 11. Multi-Step Form Styles (NEW) ===== */
+
+/* Form Stepper */
+.form-stepper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-stepper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--border-lines);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.stepper-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    z-index: 1;
+    background-color: var(--card-bg); /* To cover the line behind it */
+    padding: 0 0.5rem;
+}
+
+.stepper-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--border-lines);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background-color: var(--card-bg);
+    transition: all 0.3s ease;
+}
+
+.stepper-title {
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+/* Stepper States */
+.stepper-item.active .stepper-circle {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+.stepper-item.active .stepper-title {
+    color: var(--primary-color);
+}
+.stepper-item.completed .stepper-circle {
+    border-color: var(--accent-color);
+    background-color: var(--accent-color);
+    color: white;
+    content: '✓'; /* Simple tick, or use SVG */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    text-indent: -9999px; /* Hide the number */
+}
+.stepper-item.completed .stepper-title {
+    color: var(--accent-color);
+}
+
+/* Form Sections */
+.form-section {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+.form-section.active {
+    display: block;
+}
+.form-section h3 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-lines);
+    color: var(--text-main);
+}
+
+/* Form Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-lines);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 87, 163, 0.2);
+}
+.form-group select[multiple] {
+    height: 120px; /* Make multi-select easier to use */
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-lines);
+}
+#submitBtn {
+    display: none;
+}
+
+
+/* ===== 12. Form Validation Styles (NEW) ===== */
+
+.form-group .error-message {
+    display: none;
+    color: var(--danger-color);
+    font-size: 0.8125rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: var(--danger-color);
+}
+
+.form-group.error input:focus,
+.form-group.error select:focus,
+.form-group.error textarea:focus {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.2);
+}
+
+.form-group.error label {
+    color: var(--danger-color);
+}

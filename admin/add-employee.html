@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Employee - Payroll System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/employees.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- ===== Admin Sidebar ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>PayPro</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg><span>Dashboard</span></a></li>
+                    <li class="nav-category"><span>Employee</span></li>
+                    <li><a href="employee-management.html" class="active"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Employee Management</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="menu-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                </div>
+                <h1>New Employee</h1>
+            </header>
+            
+            <div class="content-body">
+                <div class="card">
+                    <!-- Form Stepper -->
+                    <div class="form-stepper">
+                        <div class="stepper-item active"><span class="stepper-circle">1</span><span class="stepper-title">Personal Info</span></div>
+                        <div class="stepper-item"><span class="stepper-circle">2</span><span class="stepper-title">Contact Info</span></div>
+                        <div class="stepper-item"><span class="stepper-circle">3</span><span class="stepper-title">Employment</span></div>
+                        <div class="stepper-item"><span class="stepper-circle">4</span><span class="stepper-title">Payroll</span></div>
+                    </div>
+
+                    <!-- Form Content -->
+                    <form id="addEmployeeForm" novalidate>
+                        <!-- Section 1: Personal Information -->
+                        <div class="form-section active" id="section-1">
+                            <h3>Personal Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group"><label for="empId">Employee ID</label><input type="text" id="empId" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="firstName">First Name</label><input type="text" id="firstName" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="middleName">Middle Name</label><input type="text" id="middleName"></div>
+                                <div class="form-group"><label for="lastName">Last Name</label><input type="text" id="lastName" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="dob">Date of Birth</label><input type="date" id="dob" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="gender">Gender</label><select id="gender" required><option value="">Select Gender</option><option>Male</option><option>Female</option></select><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="nationality">Nationality</label><input type="text" id="nationality" value="Kenyan" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="nationalId">National ID / Passport</label><input type="text" id="nationalId" required><span class="error-message">This field is required.</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Contact Information -->
+                        <div class="form-section" id="section-2">
+                            <h3>Contact Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group"><label for="personalPhone">Personal Phone</label><input type="tel" id="personalPhone" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="personalEmail">Personal Email</label><input type="email" id="personalEmail" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group full-width"><label for="address">Residential Address</label><input type="text" id="address" required><span class="error-message">This field is required.</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Employment Details -->
+                        <div class="form-section" id="section-3">
+                            <h3>Employment Details</h3>
+                            <div class="form-grid">
+                                <div class="form-group"><label for="dateOfHire">Date of Hire</label><input type="date" id="dateOfHire" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="jobTitle">Designation/Job Title</label><input type="text" id="jobTitle" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="department">Department</label><select id="department" required><option value="">Select Department</option><option>Technology</option><option>Finance</option><option>HR</option><option>Marketing</option></select><span class="error-message">This field is required.</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Job and Payroll Details -->
+                        <div class="form-section" id="section-4">
+                            <h3>Job and Payroll Details</h3>
+                            <div class="form-grid">
+                                <div class="form-group"><label for="salary">Salary Amount (KSh)</label><input type="number" id="salary" required><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="bankName">Bank Name</label><select id="bankName" required><option value="">Select Bank</option><option>Equity Bank</option><option>KCB Bank</option><option>Co-operative Bank</option><option>Absa Bank</option></select><span class="error-message">This field is required.</span></div>
+                                <div class="form-group"><label for="accountNumber">Bank Account Number</label><input type="text" id="accountNumber" required><span class="error-message">This field is required.</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="form-navigation">
+                            <button type="button" id="prevBtn" class="btn btn-secondary">Previous</button>
+                            <button type="button" id="nextBtn" class="btn btn-primary">Next</button>
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Submit Employee</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('addEmployeeForm');
+            const formSections = document.querySelectorAll('.form-section');
+            const stepperItems = document.querySelectorAll('.stepper-item');
+            
+            let currentStep = 1;
+            const totalSteps = formSections.length;
+
+            const validateStep = (step) => {
+                let isValid = true;
+                const activeSection = document.getElementById(`section-${step}`);
+                const requiredInputs = activeSection.querySelectorAll('[required]');
+
+                requiredInputs.forEach(input => {
+                    const formGroup = input.closest('.form-group');
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        formGroup.classList.add('error');
+                    } else {
+                        formGroup.classList.remove('error');
+                    }
+                });
+                return isValid;
+            };
+
+            form.addEventListener('input', (e) => {
+                if(e.target.hasAttribute('required')){
+                    const formGroup = e.target.closest('.form-group');
+                    if (e.target.value.trim()) {
+                        formGroup.classList.remove('error');
+                    }
+                }
+            });
+
+            const updateFormState = () => {
+                formSections.forEach((section, index) => {
+                    section.classList.toggle('active', index + 1 === currentStep);
+                });
+
+                stepperItems.forEach((item, index) => {
+                    const stepNumber = index + 1;
+                    if (stepNumber < currentStep) {
+                        item.classList.add('completed');
+                        item.classList.remove('active');
+                    } else if (stepNumber === currentStep) {
+                        item.classList.add('active');
+                        item.classList.remove('completed');
+                    } else {
+                        item.classList.remove('active', 'completed');
+                    }
+                });
+
+                prevBtn.style.display = currentStep > 1 ? 'inline-block' : 'none';
+                nextBtn.style.display = currentStep < totalSteps ? 'inline-block' : 'none';
+                submitBtn.style.display = currentStep === totalSteps ? 'inline-block' : 'none';
+            };
+
+            nextBtn.addEventListener('click', () => {
+                if (validateStep(currentStep) && currentStep < totalSteps) {
+                    currentStep++;
+                    updateFormState();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateFormState();
+                }
+            });
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (validateStep(currentStep)) {
+                    alert('Employee data submitted successfully!');
+                    window.location.href = 'employee-management.html';
+                }
+            });
+
+            updateFormState();
+        });
+    </script>
+</body>
+</html>
