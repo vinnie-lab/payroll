@@ -1,65 +1,86 @@
-// Line Chart - Monthly Payroll Trends
-    const monthlyPayrollCtx = document.getElementById('monthlyPayrollChart').getContext('2d');
-    new Chart(monthlyPayrollCtx, {
-        type: 'line',
-        data: {
-            labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-            datasets: [{
-                data: [1200000, 1150000, 1180000, 1230000, 1300000, 1280000],
-                borderColor: '#0057A3',
-                backgroundColor: 'rgba(0, 87, 163, 0.1)',
-                tension: 0.3,
-                pointRadius: 5,
-                fill: true
-            }]
+var options = {
+          series: [{
+            name: 'Salary',
+            data: [4000, 1000, 4408, 4700, 540, 5800, 6900, 1100, 1200, 13800]
+        }],
+          chart: {
+          type: 'bar',
+          height: 350
         },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        title: () => null,
-                        label: context => `KSh ${context.raw.toLocaleString()}`
-                    }
-                }
-            },
-            scales: {
-                x: { grid: { display: false }, ticks: { color: '#333' } },
-                y: {
-                    grid: { display: false },
-                    ticks: {
-                        callback: value => 'KSh ' + value.toLocaleString(),
-                        color: '#333'
-                    }
-                }
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            borderRadiusApplication: 'end',
+            horizontal: true,
+            dataLabels: {
+              position: 'top' // 'top' | 'center' | 'bottom'
             }
-        }
-    });
 
-    // Donut Chart - Salary by Department
-    const departmentSalaryCtx = document.getElementById('departmentSalaryChart').getContext('2d');
-    new Chart(departmentSalaryCtx, {
-        type: 'bar',
-        data: {
-            labels: ['HR', 'Finance', 'IT', 'Operations', 'Sales'],
-            datasets: [{
-                data: [350000, 420000, 500000, 390000, 460000],
-                backgroundColor: ['#3EAF7C', '#2C9F67', '#8AD7B1', '#57BA92', '#146B4D'],
-                borderWidth: 0
-            }]
+          }
         },
-        options: {
-            responsive: true,
-            cutout: '60%',
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        title: () => null,
-                        label: context => `${context.label}: KSh ${context.raw.toLocaleString()}`
-                    }
-                }
-            }
-        }
-    });
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: ['IT', 'HR', 'Finance', 'Marketing', 'Sales', 'Operations', 'R&D', 'Customer Support', 'Legal', 'Admin'
+          ],
+          title: {
+            text: 'Salary in KSh'
+          }
+          
+        },
+        
+        
+        };
+
+        var chart = new ApexCharts(document.querySelector("#departmentSalaryBar"), options);
+        chart.render();
+
+        var optionsLine = {
+          series: [{
+          name: 'Salary',
+          data: [31, 40, 28, 51, 42, 109, 100, 120, 130, 140, 150, 160]
+        }, {
+          name: 'Bonus',
+          data: [11, 32, 45, 32, 34, 52, 41, 55, 60, 65, 70, 75]
+        }],
+          chart: {
+          height: 350,
+          type: 'area',
+          toolbar: false,
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          
+          categories: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',  
+            'Dec'
+            
+          ]
+        },
+        tooltip: {
+          x: {
+            format: 'dd/MM/yy HH:mm'
+          },
+
+          
+        },
+        };
+
+        var MonthlyPayrollLine = new ApexCharts(document.querySelector("#monthlyPayrollLineChart"), optionsLine);
+        MonthlyPayrollLine.render();

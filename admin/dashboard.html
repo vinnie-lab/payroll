@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Link to ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -69,14 +71,18 @@
                 <section class="charts-section">
                     <div class="card">
                         <h3>Monthly Payroll Trends</h3>
-                        <div class="chart-placeholder">
-                            <p class="chart-label"><canvas id="monthlyPayrollChart" ></canvas></p>
+                        <div class="">
+                            <p class="chart-label">
+                                <div id="monthlyPayrollLineChart"></div>
+                            </p>
                         </div>
                     </div>
                     <div class="card">
                         <h3> Salary By Department</h3>
-                        <div class="chart-placeholder">
-                            <p class="chart-label"><canvas id="departmentSalaryChart" ></canvas></p>
+                        <div class="">
+                            <p class="chart-label">
+                                <div id="departmentSalaryBar"></div>
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -111,6 +117,9 @@
                         </div>
                     </div>
                 </section>
+                <section>
+                    <div id="charts"></div>
+                </section>
             </div>
         </main>
     </div>
@@ -124,6 +133,8 @@
         document.querySelector('.menu-toggle').addEventListener('click', () => {
             document.querySelector('.dashboard-container').classList.toggle('sidebar-visible');
         });
+
+         
 
     </script>
     <script>
