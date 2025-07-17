@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Employee - Zephyra Payroll System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/employees.css">
+    <link rel="stylesheet" href="../css/modal.css">
+</head>
+<body>
+    <style>
+        /* Ensure form and its parents are visible */
+    #addDepartmentForm,
+    .form-section,
+    .form-grid,
+    .card {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    
+    </style>
+    <div class="dashboard-container">
+        <!-- ===== Admin Sidebar ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Zephyra</h2>
+                <!-- ADD THIS BUTTON -->
+                <button class="sidebar-close-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg><span>Dashboard</span></a></li>
+                    <li><a href="departments.html" class="active"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg><span>Departments</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="menu-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                </div>
+                <h1>New Department</h1>
+            </header>
+            
+            <div class="content-body">
+                <div class="card">
+                    
+                    <!-- Form Content -->
+                    <form id="addDepartmentForm" novalidate>
+                        <!-- Section 1: Personal Information -->
+                        <div class="form-section">
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="depId">Department ID</label>
+                                    <input type="text" id="depId" required>
+                                    <span class="error-message">This field is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="DepartmentName">Department Name</label>
+                                    <input type="text" id="DepartmentName" required>
+                                    <span class="error-message">This field is required.</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="manager">Manager</label>
+
+                                    <select name="manager" id="manager" required>
+                                        <option value="">Select Manager</option>
+                                        <option>Manager 1</option>
+                                        <option>Manager 2</option>
+                                        <option>Manager 3</option>
+                                    </select>
+                                    <span class="error-message">This field is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" required>
+                                    <span class="error-message">This field is required.</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dob">Date Added</label>
+                                    <input type="date" id="date" required>
+                                    <span class="error-message">This field is required.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+        
+            <!-- Success Modal -->
+            <div id="successModal" class="modal">
+                <div class="modal-content">
+                    <div class="success-animation">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                    </div>
+                    <h1>Success!</h1>
+                    <p>The form was submitted successfully.</p>
+                    <div class="modal-flex-btn">
+                        <button class="btn small-btn-primary" onclick="window.location.href='departments.html'">Close</button>
+                        <button class="btn small-btn-success" onclick="window.location.href='add-department.html'">Add</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Sidebar toggle for mobile
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.dashboard-container').classList.toggle('sidebar-visible');
+        });
+
+        
+        
+        // Form submission handling
+        // --- Get Elements ---
+        const form = document.getElementById('addDepartmentForm');
+        const modal = document.getElementById('successModal');
+
+        // --- Modal Functions ---
+        const showModal = () => {
+            modal.classList.add('show');
+            //setTimeout(closeModal, 4000);
+            //window.location.href='departments.html'
+        };
+        const closeModal = () => {
+            modal.classList.remove('show');
+        };
+        modal.addEventListener('click', (event) => (event.target === modal) && closeModal());
+        document.addEventListener('keydown', (event) => (event.key === 'Escape') && closeModal());
+        
+
+        // --- Form Validation Logic ---
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (validateForm()) {
+                console.log('Form is valid. Submitting...');
+                showModal(); 
+                form.reset(); 
+            } else {
+                console.log('Form has errors.');
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+            clearErrors();
+            const requiredFields = form.querySelectorAll('[required]');
+            requiredFields.forEach(input => {
+                const formGroup = input.parentElement;
+                if (input.value.trim() === '') {
+                    isValid = false;
+                    formGroup.classList.add('error');
+                }
+                if (input.type === 'email' && input.value.trim() !== '' && !isValidEmail(input.value)) {
+                    isValid = false;
+                    formGroup.classList.add('error');
+                }
+            });
+            return isValid;
+        }
+
+        function clearErrors() {
+            const errorGroups = form.querySelectorAll('.form-group.error');
+            errorGroups.forEach(group => {
+                group.classList.remove('error');
+            });
+        }
+
+        function isValidEmail(email) {
+            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return regex.test(String(email).toLowerCase());
+        }
+
+        // --- NEW: Real-time Error Clearing ---
+        // Select all input and select elements within the form
+        const allFields = form.querySelectorAll('input, select');
+
+        // Add an 'input' event listener to each field
+        allFields.forEach(field => {
+            field.addEventListener('input', () => {
+                // When the user starts typing or changes a selection,
+                // remove the 'error' class from its parent .form-group
+                if (field.parentElement.classList.contains('error')) {
+                    field.parentElement.classList.remove('error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

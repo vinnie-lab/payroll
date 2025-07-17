@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments - Zephyra Payroll System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Reusing the same stylesheet -->
+    <link rel="stylesheet" href="../css/employees.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- ===== Admin Sidebar (with 'Employee Management' active) ===== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Zephyra</h2>
+                <!-- ADD THIS BUTTON -->
+                <button class="sidebar-close-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg><span>Dashboard</span></a></li>
+                    
+                    
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.85 22.25h-3.7c-.74 0-1.36-.54-1.45-1.28l-.27-1.89c-.27-.14-.53-.29-.79-.46l-1.8.72c-.7.26-1.47-.02-1.81-.65L2.2 15.53c-.35-.66-.2-1.44.36-1.88l1.53-1.19c-.01-.15-.02-.3-.02-.46 0-.15.01-.31.02-.46L2.56 10.35c-.55-.43-.7-1.21-.36-1.88l1.83-3.21c.34-.62 1.11-.9 1.81-.65l1.8.72c.26-.17.52-.32.79-.46l.27-1.9c.09-.7.71-1.25 1.45-1.25h3.7c.74 0 1.36.54 1.45 1.25l.27 1.89c.27.14.53.29.79-.46l1.8-.72c.71-.26 1.48.02 1.81.65l1.83 3.21c.35.66.2 1.44-.36 1.88l-1.53 1.19c.01.15.02.3.02.46s-.01.31-.02.46l1.53 1.19c.55.43.7 1.21.36 1.88l-1.83 3.21c-.34.63-1.11.9-1.81.65l-1.8-.72c-.26.17-.52.32-.79-.46l-.27 1.9c-.09.74-.71 1.28-1.45 1.28zM12 15.5c1.93 0 3.5-1.57 3.5-3.5s-1.57-3.5-3.5-3.5-3.5 1.57-3.5 3.5 1.57 3.5 3.5 3.5z"/></svg><span>Settings</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="menu-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                </div>
+                <h1>Departments</h1>
+            </header>
+        
+            
+            <div class="content-body">
+                <!-- Metrics -->
+                <section class="summary-widgets">
+                    <div class="widget-card">
+                        <h3>Total Departments</h3>
+                        <p class="widget-value">85</p>
+                        <span class="widget-status muted">57% of workforce</span>
+                    </div>
+                    <!--Left blank-->
+                    <div class="widget-card">
+                        <h3></h3>
+                        <p class="widget-value"></p>
+                        <span class="widget-status muted"></span>
+                    </div>
+                </section>
+
+                <section style="margin-bottom: 0.5rem;" >
+                    <a href="add-department.html" class="btn btn-primary">Add New Department</a>
+                </section>
+
+                <!-- Table Section -->
+                <section class="card">
+                    <div class="table-header">
+                        <h2>All Departemts</h2>
+                        <div class="table-controls">
+                            <input type="search" id="departmentSearchInput" placeholder="Search by ID or Name...">
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Department ID</th>
+                                <th>Name</th>
+                                <th>Manager</th>
+                                <th>Total Employees</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="departmentTableBody">
+                            <!-- JS will populate this -->
+                        </tbody>
+                    </table>
+                    <div class="pagination-controls" id="pagination">
+                        <!-- JS will populate this -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- ===== Department Details Modal ===== -->
+    <div id="departmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalDepName">Department Details</h2>
+                <span class="close-btn">×</span>
+            </div>
+            <div class="modal-body">
+                <p><strong>Department ID:</strong> <span id="modalDepId"></span></p>
+                <p><strong>Manager:</strong> <span id="modalDepMan"></span></p>
+                <p><strong>Email:</strong> <span id="modalDepEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="modalDepPhone"></span></p>
+                <p><strong>Date Joined:</strong> <span id="modalDepJoined"></span></p>
+                <p><strong>Total Employees:</strong> <span id="modalDepTotalEmp"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary close-btn-footer">Edit</button>
+                <button class="btn btn-secondary close-btn-footer">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+<script src="../js/departments.js"></script>
+<!-- Add script here to toggle a class on .dashboard-container for mobile menu -->
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.dashboard-container').classList.toggle('sidebar-visible');
+        });
+    </script>
+</body>
+</html>
