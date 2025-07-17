@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Reusing the same stylesheet -->
     <link rel="stylesheet" href="../css/employees.css">
+
+    <!-- Link to ApexCharts CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -53,6 +56,26 @@
                         <h3>Total Female</h3>
                         <p class="widget-value">65</p>
                         <span class="widget-status muted">43% of workforce</span>
+                    </div>
+                </section>
+
+                <!-- Charts Section -->
+                <section class="charts-section">
+                    <div class="card">
+                        <h3>Employees - Top Department</h3>
+                        <div class="">
+                            <p class="chart-label">
+                                <div id="empByDeptChart"></div>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3> Gender By Department</h3>
+                        <div class="">
+                            <p class="chart-label">
+                                <div id="departmentGenderBar"></div>
+                            </p>
+                        </div>
                     </div>
                 </section>
 
@@ -114,6 +137,7 @@
 
 
 <script src="../js/employees.js"></script>
+<script src="../js/myCharts.js"></script>
 <!-- Add script here to toggle a class on .dashboard-container for mobile menu -->
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', () => {
