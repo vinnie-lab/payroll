@@ -107,11 +107,13 @@
                 <p><strong>Total Employees:</strong> <span id="modalDepTotalEmp"></span></p>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary close-btn-footer">Edit</button>
+                <button class="btn btn-primary" id="openEditModalBtn" onclick="window.location.href='update-department.html?id=' + document.getElementById('modalDepId').innerText">Edit</button>
                 <button class="btn btn-secondary close-btn-footer">Close</button>
             </div>
         </div>
     </div>
+
+    
 
 
 <script src="../js/departments.js"></script>
@@ -121,5 +123,7 @@
             document.querySelector('.dashboard-container').classList.toggle('sidebar-visible');
         });
     </script>
+
+    
 </body>
 </html>

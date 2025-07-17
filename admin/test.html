@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Management Modal Flow</title>
+    <style>
+        /* ===== General Body and Button Styles ===== */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 40px;
+            background-color: #f4f7f9;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .btn:first-child {
+            margin-left: 0;
+        }
+
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-primary:hover { background-color: #0056b3; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-secondary:hover { background-color: #545b62; }
+        .btn-success { background-color: #28a745; color: white; }
+        .btn-success:hover { background-color: #1e7e34; }
+
+
+        /* ===== General Modal Styles ===== */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.5);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 550px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            animation: animatetop 0.4s;
+        }
+
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        .modal-header {
+            padding: 16px;
+            background-color: #007bff;
+            color: white;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .modal-body {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .modal-body p {
+            margin: 0 0 10px 0;
+        }
+
+        .modal-footer {
+            padding: 16px;
+            background-color: #f1f1f1;
+            text-align: right;
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+        }
+
+        .close-btn {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 10px;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #ffdddd;
+            text-decoration: none;
+        }
+        
+
+        /* ===== Form-Specific Styles ===== */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .form-control {
+            box-sizing: border-box; /* Important for padding */
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .form-control.input-error {
+            border-color: #dc3545; /* Red border for errors */
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 4px;
+            display: block;
+            min-height: 1em; /* Prevents layout shift */
+        }
+    </style>
+</head>
+<body>
+
+    <button id="viewDepartmentBtn" class="btn btn-primary">View Department Details</button>
+
+    <!-- ===== Department Details Modal (View Only) ===== -->
+    <div id="departmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalDepName">Department Details</h2>
+                <span class="close-btn">×</span>
+            </div>
+            <div class="modal-body">
+                <p><strong>Department ID:</strong> <span id="modalDepId"></span></p>
+                <p><strong>Manager:</strong> <span id="modalDepMan"></span></p>
+                <p><strong>Email:</strong> <span id="modalDepEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="modalDepPhone"></span></p>
+                <p><strong>Date Joined:</strong> <span id="modalDepJoined"></span></p>
+                <p><strong>Total Employees:</strong> <span id="modalDepTotalEmp"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button id="openEditModalBtn" class="btn btn-primary">Edit</button>
+                <button class="btn btn-secondary close-btn-footer">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Edit Department Modal (Form) ===== -->
+    <div id="editDepartmentModal" class="modal">
+        <div class="modal-content">
+            <form id="editDepartmentForm" novalidate>
+                <div class="modal-header">
+                    <h2>Edit Department Details</h2>
+                    <span class="close-btn">×</span>
+                </div>
+                <div class="modal-body">
+                    <!-- Hidden field for ID is good practice -->
+                    <input type="hidden" id="editDepId">
+
+                    <div class="form-group">
+                        <label for="editDepMan">Manager:</label>
+                        <input type="text" id="editDepMan" class="form-control" required>
+                        <span class="error-message" id="managerError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDepEmail">Email:</label>
+                        <input type="email" id="editDepEmail" class="form-control" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDepPhone">Phone:</label>
+                        <input type="tel" id="editDepPhone" class="form-control" required>
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+                     <div class="form-group">
+                        <label for="editDepTotalEmp">Total Employees:</label>
+                        <input type="number" id="editDepTotalEmp" class="form-control" required min="0">
+                        <span class="error-message" id="employeeError"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <button type="button" class="btn btn-secondary close-btn-footer">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Success Modal ===== -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+             <div class="modal-header">
+                <h2>Success!</h2>
+                <span class="close-btn">×</span>
+            </div>
+            <div class="modal-body">
+                <p>Department details have been updated successfully.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary close-btn-footer">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- MOCK DATA SOURCE ---
+        // In a real application, this would come from a server API call.
+        let departmentData = {
+            id: 'DPT-001',
+            name: 'Human Resources',
+            manager: 'Jane Doe',
+            email: 'jane.doe@example.com',
+            phone: '123-456-7890',
+            dateJoined: '2020-01-15',
+            totalEmployees: 25
+        };
+
+        // --- GET ALL MODAL ELEMENTS ---
+        const departmentModal = document.getElementById('departmentModal');
+        const editDepartmentModal = document.getElementById('editDepartmentModal');
+        const successModal = document.getElementById('successModal');
+        const allModals = [departmentModal, editDepartmentModal, successModal];
+        
+        // --- GET ALL BUTTONS AND FORM ---
+        const viewDepartmentBtn = document.getElementById('viewDepartmentBtn');
+        const openEditModalBtn = document.getElementById('openEditModalBtn');
+        const editDepartmentForm = document.getElementById('editDepartmentForm');
+        const allCloseBtns = document.querySelectorAll('.close-btn, .close-btn-footer');
+
+        // --- HELPER FUNCTIONS FOR MODALS ---
+        const openModal = (modal) => modal.style.display = 'block';
+        const closeModal = (modal) => modal.style.display = 'none';
+
+        // --- FUNCTIONS TO POPULATE MODAL CONTENT ---
+        function populateViewModal() {
+            document.getElementById('modalDepName').textContent = departmentData.name;
+            document.getElementById('modalDepId').textContent = departmentData.id;
+            document.getElementById('modalDepMan').textContent = departmentData.manager;
+            document.getElementById('modalDepEmail').textContent = departmentData.email;
+            document.getElementById('modalDepPhone').textContent = departmentData.phone;
+            document.getElementById('modalDepJoined').textContent = departmentData.dateJoined;
+            document.getElementById('modalDepTotalEmp').textContent = departmentData.totalEmployees;
+        }
+
+        function populateEditModal() {
+            document.getElementById('editDepId').value = departmentData.id;
+            document.getElementById('editDepMan').value = departmentData.manager;
+            document.getElementById('editDepEmail').value = departmentData.email;
+            document.getElementById('editDepPhone').value = departmentData.phone;
+            document.getElementById('editDepTotalEmp').value = departmentData.totalEmployees;
+        }
+
+        // --- FORM VALIDATION AND ERROR HANDLING ---
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(span => span.textContent = '');
+            document.querySelectorAll('.form-control').forEach(input => input.classList.remove('input-error'));
+        }
+
+        function displayError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorSpan = document.getElementById(fieldId.replace('editDep', '').toLowerCase() + 'Error');
+            if (field) field.classList.add('input-error');
+            if (errorSpan) errorSpan.textContent = message;
+        }
+        
+        // --- EVENT LISTENERS ---
+
+        // 1. Open the main "View Department" modal
+        viewDepartmentBtn.addEventListener('click', () => {
+            populateViewModal();
+            openModal(departmentModal);
+        });
+
+        // 2. Open the "Edit" modal from the "View" modal's edit button
+        openEditModalBtn.addEventListener('click', () => {
+            closeModal(departmentModal);
+            clearErrors(); // Clear any previous errors before showing
+            populateEditModal();
+            openModal(editDepartmentModal);
+        });
+        
+        // 3. Handle the "Edit" form submission
+        editDepartmentForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent the default browser form submission
+            
+            clearErrors();
+            let isValid = true;
+
+            const manager = document.getElementById('editDepMan').value.trim();
+            const email = document.getElementById('editDepEmail').value.trim();
+            const phone = document.getElementById('editDepPhone').value.trim();
+            const employees = document.getElementById('editDepTotalEmp').value.trim();
+
+            // --- VALIDATION LOGIC ---
+            if (!manager) {
+                displayError('editDepMan', 'Manager name is required.');
+                isValid = false;
+            }
+            if (!email) {
+                displayError('editDepEmail', 'Email is required.');
+                isValid = false;
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                displayError('editDepEmail', 'Email address is not valid.');
+                isValid = false;
+            }
+            if (!phone) {
+                displayError('editDepPhone', 'Phone number is required.');
+                isValid = false;
+            }
+            if (employees === '' || parseInt(employees) < 0) {
+                displayError('editDepTotalEmp', 'Must be a non-negative number.');
+                isValid = false;
+            }
+
+            // --- CHECK VALIDATION RESULT ---
+            if (isValid) {
+                // SUCCESS: Update the mock data
+                departmentData.manager = manager;
+                departmentData.email = email;
+                departmentData.phone = phone;
+                departmentData.totalEmployees = parseInt(employees, 10);
+                
+                // Close the edit modal and show the success modal
+                closeModal(editDepartmentModal);
+                openModal(successModal);
+            }
+            // On failure, do nothing - the errors are already displayed
+        });
+
+        // 4. Handle closing ALL modals with 'x' or 'close'/'cancel'/'ok' buttons
+        allCloseBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                allModals.forEach(closeModal);
+            });
+        });
+
+        // 5. Allow closing modals by clicking on the background overlay
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal(e.target);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
