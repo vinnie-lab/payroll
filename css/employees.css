@@ -23,6 +23,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+.btn-danger{
+    background-color: var(--danger-color);
+    color: #FFFFFF;
+}
+.btn-danger:hover {
+    background-color: #a33125; /* Darker shade for hover */
+}
 
 html {
     font-size: 16px; /* Base for rem units */
@@ -34,6 +41,7 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     font-weight: 400; /* Regular */
+    max-width: 1400px;
 }
 
 a {
@@ -642,6 +650,23 @@ body { font-size: 0.9375rem; }
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(0, 87, 163, 0.2);
+}
+
+/* Style table-header inputs and selects */
+.table-header input[type="search"],
+.table-header select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    background: #f9fafb;
+    transition: border-color 0.2s;
+}
+.table-header input[type="search"]:focus,
+.table-header select:focus {
+    border-color: #3EAF7C;
+    outline: none;
 }
 
 /* Pagination */

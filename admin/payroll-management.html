@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payroll Management - Zephyra Payroll System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/employees.css">
+    <link rel="stylesheet" href="../css/modal.css">
+</head>
+<body>
+    <script src="../js/loader.js"></script>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Zephyra</h2>
+                <button class="sidebar-close-btn">&#10005;</button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><span>Dashboard</span></a></li>
+                    <li><a href="payroll-management.html" class="active"><span>Payroll</span></a></li>
+                    <li><a href="departments.html"><span>Departments</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="menu-toggle">&#9776;</div>
+                <h1>Payroll Management</h1>
+            </header>
+            <div class="content-body">
+                <!-- Pending Payrolls Table -->
+                <div class="card" style="margin-bottom:2rem;">
+                    <div class="page-header">
+                        <h2>Pending Payrolls</h2>
+                        
+                    </div>
+                    <div class="table-header">
+                        <input type="search" id="pendingPayrollSearch" placeholder="Search Payroll by ID">
+                        <select id="pendingPayrollYear">
+                            <option value="">Year</option>
+                        </select>
+                        <select id="pendingPayrollMonth">
+                            <option value="">Month</option>
+                        </select>
+                        <section>
+                            <button class="btn btn-primary" id="bulkApproveBtn">Bulk Approve</button>
+                        </section>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Payroll ID</th>
+                                <th>Department</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingPayrollTableBody"></tbody>
+                    </table>
+                    <div id="pendingPayrollPagination" class="pagination-controls"></div>
+                </div>
+                <!-- Payroll History Table -->
+                <div class="card">
+                    <div class="table-header">
+                        <h2>Payroll History</h2>
+                        
+                    </div>
+                    <div class="table-header">
+                        <input type="search" id="historyPayrollSearch" placeholder="Search Payroll by ID">
+                        <select id="historyPayrollYear">
+                            <option value="">Year</option>
+                        </select>
+                        <select id="historyPayrollMonth">
+                            <option value="">Month</option>
+                        </select>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Payroll ID</th>
+                                <th>Department</th>
+                                <th>Month</th>
+                                <th>Year</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyPayrollTableBody"></tbody>
+                    </table>
+                    <div id="payrollPagination" class="pagination-controls"></div>
+                </div>
+            </div>
+            <!-- Modal for Payslip Download/Payroll Update -->
+            <div id="payrollModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">Payroll Details</h2>
+                        <span class="close-btn" id="closePayrollModal">&times;</span>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                        <!-- Dynamic content -->
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="downloadPayslipBtn">Download Payslip PDF</button>
+                        <button class="btn btn-secondary" id="downloadPayslipCSVBtn">Download Payslip CSV</button>
+                        <button class="btn btn-success" id="updatePayrollBtn">Update Payroll</button>
+                        <button class="btn btn-danger" id="rollbackPayrollBtnModal">Rollback Payroll</button>
+                        <button class="btn btn-secondary close-btn-footer" id="closePayrollModalFooter">Close</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+ 
+    <script src="../js/payroll-management.js"></script>
+</body>
+</html>

@@ -44,7 +44,7 @@ form {
             font-size: 16px;
             font-weight: bold;
             color: #fff;
-            background-color: #007bff;
+            background-color: #0057A3;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -54,8 +54,11 @@ form {
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #00417a;
         }
+
+
+        
 
         /* --- Validation Error Styles --- */
         .error-message {
