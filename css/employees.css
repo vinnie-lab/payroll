@@ -1034,6 +1034,19 @@ body { font-size: 0.9375rem; }
     width: 80px; /* Limit width for small buttons */
 }
 
+.btn-success {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-success:hover {
+    background-color: #34a67a; /* Darker shade for hover */
+}
+
 .small-btn-success:hover {
    
     background-color: #34a67a; /* Darker shade for hover */
@@ -1047,4 +1060,17 @@ body { font-size: 0.9375rem; }
     font-weight: 500;
     transition: background-color 0.2s ease;
     width: 80px;
+}
+.small-btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-main);
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    width: 80px;
+}
+.small-btn-secondary:hover {
+    background-color: #e9ecf0; /* Lighter shade for hover */
 }

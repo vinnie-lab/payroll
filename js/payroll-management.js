@@ -16,6 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const payrollHistory = [
         { id: 'PR0011', department: 'Technology', month: 'August', year: 2022, amount: 1100000, status: 'Approved' },
         { id: 'PR0024', department: 'Finance', month: 'June', year: 2024, amount: 750000, status: 'Approved' },
+        { id: 'PR0034', department: 'HR', month: 'May', year: 2024, amount: 480000, status: 'Approved' },
+        { id: 'PR0011', department: 'Technology', month: 'August', year: 2022, amount: 1100000, status: 'Approved' },
+        { id: 'PR0024', department: 'Finance', month: 'June', year: 2024, amount: 750000, status: 'Approved' },
+        { id: 'PR0034', department: 'HR', month: 'May', year: 2024, amount: 480000, status: 'Approved' },
+        { id: 'PR0011', department: 'Technology', month: 'August', year: 2022, amount: 1100000, status: 'Approved' },
+        { id: 'PR0024', department: 'Finance', month: 'June', year: 2024, amount: 750000, status: 'Approved' },
+        { id: 'PR0034', department: 'HR', month: 'May', year: 2024, amount: 480000, status: 'Approved' },
+        { id: 'PR0011', department: 'Technology', month: 'August', year: 2022, amount: 1100000, status: 'Approved' },
+        { id: 'PR0024', department: 'Finance', month: 'June', year: 2024, amount: 750000, status: 'Approved' },
         { id: 'PR0034', department: 'HR', month: 'May', year: 2024, amount: 480000, status: 'Approved' }
     ];
     // --- Utility ---
@@ -69,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>KES ${p.amount.toLocaleString()}</td>
                 <td><span class="status-badge status-danger">${p.status}</span></td>
                 <td>
-                    <button class="btn btn-success approve-btn" data-id="${p.id}">Approve</button>
-                    <button class="btn btn-secondary view-btn" data-id="${p.id}">View</button>
+                    <button class="btn small-btn-success approve-btn" data-id="${p.id}">Approve</button>
+                    <button class="btn small-btn-secondary view-btn" data-id="${p.id}">Download</button>
                 </td>
             </tr>`
         ).join('') : '<tr><td colspan="7" style="text-align:center;">No payrolls found.</td></tr>';
